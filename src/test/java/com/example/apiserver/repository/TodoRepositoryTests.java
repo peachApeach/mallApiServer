@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -26,13 +30,17 @@ public class TodoRepositoryTests {
 
     @Test
     public void testInsert() {
-        Todo todo = Todo.builder()
-                .title("Title")
-                .content("Contents...")
-                .dueDate(LocalDate.of(2023,06,17))
-                .build();
 
-        todoReository.save(todo);
+        for (int i =0; i<100; i++) {
+            Todo todo = Todo.builder()
+                    .title("Title"+i)
+                    .content("Contents..."+i)
+                    .dueDate(LocalDate.of(2023,06,17))
+                    .build();
+
+            todoReository.save(todo);
+        }
+
     }
 
     @Test
@@ -63,6 +71,16 @@ public class TodoRepositoryTests {
 
         todoReository.save(todo);
 
+
+    }
+
+    @Test
+    public void testPaging() {
+        // 페이지 번호는 0부터 시작
+        Pageable pageable = PageRequest.of(0,10, Sort.by("tno").descending());
+        Page<Todo> result = todoReository.findAll(pageable);
+
+        log.info(result.getContent());
 
     }
 }
