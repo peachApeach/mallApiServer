@@ -11,9 +11,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 @Log4j2
-public class TodoSearchImp extends QuerydslRepositorySupport implements  TodoSearch{
+public class TodoSearchImpl extends QuerydslRepositorySupport implements  TodoSearch{
 
-    public TodoSearchImp() {
+    public TodoSearchImpl() {
         super(Todo.class);
     }
 
