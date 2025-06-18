@@ -1,6 +1,7 @@
 package com.example.apiserver.service;
 
 import com.example.apiserver.domain.Todo;
+import com.example.apiserver.dto.PageRequestDTO;
 import com.example.apiserver.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -31,5 +32,12 @@ public class TodoServiceTests {
                 .build();
 
         log.info(todoService.register(todoDTO));
+    }
+
+    @Test
+    public void testGetList() {
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(11).build();
+
+        log.info(todoService.getList(pageRequestDTO));
     }
 }

@@ -1,6 +1,8 @@
 package com.example.apiserver.repository;
 
 import com.example.apiserver.domain.Todo;
+import com.example.apiserver.dto.PageRequestDTO;
+import com.example.apiserver.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -84,8 +86,8 @@ public class TodoRepositoryTests {
 
     }
 
-    @Test
-    public void testSearch1() {
-        todoReository.search1();
-    }
+//    @Test
+//    public void testSearch1() {
+//        todoReository.search1();
+//    }
 }

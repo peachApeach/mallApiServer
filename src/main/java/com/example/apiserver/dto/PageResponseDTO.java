@@ -1,5 +1,6 @@
 package com.example.apiserver.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.domain.PageRequest;
 
@@ -21,6 +22,7 @@ public class PageResponseDTO<E> {
     
     private int totalCount, prevPage, nextPage, totalPage, current;
 
+    @Builder(builderMethodName = "withAll")
     public PageResponseDTO(List<E> dtoList, PageRequestDTO pageRequestDTO, long total){
         this.dtoList = dtoList;
         this.pageRequestDTO = pageRequestDTO;

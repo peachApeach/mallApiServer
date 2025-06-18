@@ -1,6 +1,8 @@
 package com.example.apiserver.service;
 
 import com.example.apiserver.domain.Todo;
+import com.example.apiserver.dto.PageRequestDTO;
+import com.example.apiserver.dto.PageResponseDTO;
 import com.example.apiserver.dto.TodoDTO;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,8 @@ public interface TodoService {
     void modify(TodoDTO dto);
 
     void remove(Long tno);
+
+    PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
 
     default TodoDTO entityToDTO(Todo todo){
         TodoDTO todoDTO = TodoDTO.builder()
