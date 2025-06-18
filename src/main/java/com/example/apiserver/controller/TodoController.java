@@ -28,6 +28,7 @@ public class TodoController {
         return todoService.getList(pageRequestDTO);
     }
 
+    // json 방식을 사용하기 위해 map 사용
     @PostMapping("/")
     public Map<String, Long> register(@RequestBody TodoDTO todoDTO) {
         log.info("todoDTO: " + todoDTO);
@@ -35,5 +36,18 @@ public class TodoController {
         Long tno = todoService.register(todoDTO);
 
         return Map.of("TNO", tno);
+    }
+
+    @PutMapping("/{tno}")
+    public Map<String, String> modify(@PathVariable("tno") Long tno, @RequestBody TodoDTO todoDTO){
+        todoDTO.setTno(tno);
+        todoService.modify(todoDTO);
+        return Map.of("RESULT", "SUCCESS");
+    }
+
+    @DeleteMapping("/{tno}")
+    public Map<String, String> remove(@PathVariable Long tno) {
+        todoService.remove(tno);
+        return Map.of("RESULT", "SUCCESS");
     }
 }
