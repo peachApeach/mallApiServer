@@ -6,10 +6,9 @@ import com.example.apiserver.dto.TodoDTO;
 import com.example.apiserver.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @Log4j2
@@ -27,5 +26,14 @@ public class TodoController {
     public PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO) {
         log.info("list-------------------"+pageRequestDTO);
         return todoService.getList(pageRequestDTO);
+    }
+
+    @PostMapping("/")
+    public Map<String, Long> register(@RequestBody TodoDTO todoDTO) {
+        log.info("todoDTO: " + todoDTO);
+
+        Long tno = todoService.register(todoDTO);
+
+        return Map.of("TNO", tno);
     }
 }
